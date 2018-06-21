@@ -10,3 +10,13 @@
     font-size: @size * 3;
   }
 }
+
+@vw_base: 750;
+@vh_base: 1334;
+
+.vw(@name, @px) {
+  @{name}: @px / @vw_base * 100vw
+}
+.vh(@name, @px) {
+  @{name}: @px / @vh_base * 100vh
+}

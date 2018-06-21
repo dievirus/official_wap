@@ -24,4 +24,5 @@
 <style scoped lang="less" rel="stylesheet/less">
   @import "~common/less/mixin.less";
   @import "~common/less/variable.less";
+
 </style>

@@ -4,6 +4,8 @@ import Router from 'vue-router'
 const A = () => import('components/a')
 const B = () => import('components/b')
 const BB = () => import('components/bb')
+const Home = () => import('components/home/home')
+const About = () => import('components/about/about')
 
 Vue.use(Router)
 
@@ -11,22 +13,17 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/a'
+      redirect: '/home'
     },
     {
-      path: '/a',
-      component: A
+      path: '/home',
+      component: Home
     },
     {
-      path: '/b',
-      component: B,
-      children: [
-        {
-          path: ':id',
-          component: BB
-        }
-      ]
+      path: '/about',
+      component: About
     }
+    
 
   ]
 })

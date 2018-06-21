@@ -1,24 +1,27 @@
 <template>
   <div id="app">
-    <div>
-      <router-link tag="span" to="/a">a组件</router-link>
-      <router-link tag="span" to="/b">b组件</router-link>
-    </div>
-    <router-view></router-view>
+    <Nav></Nav>
+    <router-view ></router-view>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
+import Nav from  '@/base/nav/nav.vue'
+import Footer from  '@/base/Footer/Footer.vue'
+
+
 export default {
+  components: {
+    Nav,
+    Footer
+  }
 }
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">
   @import "~common/less/mixin.less";
 
-  #app {
-    .fontsize(14px)
-  }
   .router-link-active {
     color:red;
   }

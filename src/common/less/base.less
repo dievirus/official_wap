@@ -6,8 +6,59 @@ body, html {
   font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif, 'Droid Sans Fallback';
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  background: @color_background;
+  color:@color1;
 }
-body {
-  .fontsize(14px)
+.clearfix:after{
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden
+}
+.ll {
+  float:left;
+}
+.rr {
+  float:right;
+}
+.header {
+  width:100%;
+  text-align: center;
+  .vh(height,88);
+  .vh(line-height,88);
+  font-size:18px;
+}
+.section {
+  .title {
+    font-size:20px;
+    color:@color1;
+    text-align: center;
+    .vh(padding-top,60);
+    .vh(padding-bottom,60);
+    position: relative;
+    span {
+      display:block;
+      .vw(width,60);
+      .vh(height,8);
+      margin:0 auto;
+      background:@color3;
+      .vh(margin-top,30)
+    }
+  }
+
+}
+a {
+  text-decoration: none
+}
+.nowrap {
+  text-overflow:ellipsis;
+  overflow:hidden;
+  white-space:nowrap;
+}
+.nowrap2 {
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2; 
 }
