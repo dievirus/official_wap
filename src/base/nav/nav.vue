@@ -70,7 +70,10 @@
         font-size:16px;
         color:#fff;
         .vh(margin-bottom,60);
-        .vw(width,200)
+        .vw(width,200);
+        &.router-link-active {
+          color:@color3;
+        }
       }
       .close {
         position:absolute;
