@@ -40,12 +40,15 @@
   @import "~common/less/variable.less";
   
   .nav {
+    position:absolute;
+    width:100%;
+    z-index: 1000;
     .nav-wrap {
       .vh(margin-top,120);
       .vw(padding-left,30);
       .vw(padding-right,30);
       box-sizing: border-box;
-      position:absolute;
+      
       width:100%;
       z-index:9999;
       .logo {
@@ -79,6 +82,9 @@
         .vh(top,30);
         z-index:99999999999
 
+      }
+      .router-link-active {
+        color:@color3
       }
     }
     .menu-enter-active, 

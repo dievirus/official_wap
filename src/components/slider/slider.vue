@@ -77,7 +77,7 @@
   .slide1-wrap {
     position: absolute;
     left:0;
-    .vh(top,180);
+    .vh(top,160);
     z-index:100;
     color:#fff;
     text-align: center;

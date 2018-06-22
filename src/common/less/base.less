@@ -62,3 +62,34 @@ a {
   -webkit-box-orient:vertical;
   -webkit-line-clamp:2; 
 }
+
+.tab {
+  display:flex;
+  .vh(height,88);
+  align-items:center;
+  justify-content:space-around;
+  border-bottom:1px solid #ddd;
+  a {
+    color:@color2;
+    font-size:14px;
+    height: 100%;
+    .vh(line-height,88);
+    box-sizing: border-box;
+    &.router-link-active {
+      border-bottom:3px solid @color3;
+    }
+  }
+}
+.pd15 {
+  padding:15px;
+}
+.c-title {
+  padding:30px 0;
+  font-size:20px;
+  font-weight: 700;
+}
+
+.indent60 {
+  .vw(text-indent,60);
+}
+ 

@@ -141,7 +141,6 @@
             .vh(margin-bottom,64);
             img {
               .vw(width,120);
-              .vh(height,120);
             }
             .text {
               font-size:12px;
@@ -168,7 +167,6 @@
           .vh(margin-bottom,40);
           .img-wrap {
             .vw(width,240);
-            .vh(height,180);
             border:1px solid black;
             img {
               width:100%;
