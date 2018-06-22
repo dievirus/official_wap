@@ -83,6 +83,7 @@
           </div>
         </li>
       </ul>
+      <a href="" class="more">查看更多</a>
     </section>
     <section class="section section4">
       <div class="title">
@@ -188,7 +189,21 @@
             }
           }
         }
-        
+      }
+      .more {
+        display:block;
+        margin:0 auto;
+        .vw(width,360);
+        .vh(height,80);
+        .vw(margin-top,40);
+        .vw(margin-bottom,60);
+        color:#fff;
+        font-size:16px;
+        text-align: center;
+        .vh(line-height,80);
+        border-radius: 20px;
+        background:@color3;
+
       }
     }
     .section4 {
