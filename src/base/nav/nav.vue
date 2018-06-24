@@ -31,6 +31,15 @@
       tes() {
         console.log('j')
       }
+    },
+    watch: {
+      isMenuShow() {
+        if(this.isMenuShow) {
+          document.getElementsByTagName('body')[0].style.overflow = 'hidden'
+        }else {
+          document.getElementsByTagName('body')[0].style.overflow = 'auto'
+        }
+      }
     }
   }
 </script>

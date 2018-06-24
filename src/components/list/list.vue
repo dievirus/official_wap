@@ -1,27 +1,117 @@
 <template>
   <div class="list">
     <ul class="content">
-      <router-link to="/about/d/detail">
-        <li>
-          <div class="img-wrap">
-            <img src="./test.jpg" alt="">
-          </div>
-          <div class="d-info">
-            <div class="d-title nowrap2">一文读懂「用户行为数据」的采集、分析和应用首付水电费水电费是的f</div>
-            <div class="d-date">2017-12-12</div>
-          </div>
+        <li v-for="item in list" :key="item.id">
+          <router-link :to="url+item.id">
+            <div class="img-wrap">
+              <img v-lazy="item.src" alt="">
+            </div>
+            <div class="d-info">
+              <div class="d-title nowrap2">{{item.title}}</div>
+              <div class="d-date">{{item.createTime}}</div>
+            </div>
+          </router-link>
         </li>
-      </router-link>
     </ul>
-      
+    <div class="loading">{{isMore}}</div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import { query } from '@/api/api'
+  import { yearMonthDay } from '@/utils/index'
 
   export default {
-    components: {
+    data() {
+      return {
+        list:[],
+        currentPage:1,
+        totalPage:null,
+        pageSize:10,
+        loadingShow:false,
+        isMore:'',
+      }
     },
+    props: {
+      url:{},
+      type:{}
+    },
+    watch: {
+      type(val) {
+        this.getList(1)
+      }
+    },
+    mounted() {
+      this.onScroll()
+    },
+    methods: {
+
+      getList(page) {
+        query({
+          size:this.pageSize,
+          page: page,
+          type: this.type,
+        }).then((res) => {
+          if(res.data.code == '200') {
+            this.list = this.list.concat(res.data.data.rows)
+            this.totalPage = Math.ceil((res.data.data.count) / this.pageSize)
+            this.list.map((item) => {
+              item.createTime = yearMonthDay(item.createTime)
+            })
+            if(this.totalPage == 1 || this.totalPage == this.currentPage) {
+              this.isMore = '暂无更多数据'
+            }else {
+              // this.isMore = '上拉加载'
+            }
+          }else {
+            alert('请求失败，清重试')
+          }
+        })
+      },
+      getScrollTop(){
+      　　var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
+      　　if(document.body){
+      　　　　bodyScrollTop = document.body.scrollTop;
+      　　}
+      　　if(document.documentElement){
+      　　　　documentScrollTop = document.documentElement.scrollTop;
+      　　}
+      　　scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+      　　return scrollTop;
+      },
+      getScrollHeight(){
+      　　var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
+      　　if(document.body){
+      　　　　bodyScrollHeight = document.body.scrollHeight;
+      　　}
+      　　if(document.documentElement){
+      　　　　documentScrollHeight = document.documentElement.scrollHeight;
+      　　}
+      　　scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+      　　return scrollHeight
+      },
+      getWindowHeight(){
+      　　var windowHeight = 0;
+      　　if(document.compatMode == "CSS1Compat"){
+      　　　　windowHeight = document.documentElement.clientHeight;
+      　　}else{
+      　　　　windowHeight = document.body.clientHeight;
+      　　}
+      　　return windowHeight
+      },
+      onScroll() {
+        window.onscroll = (() => {
+          if(this.getScrollTop() + this.getWindowHeight() == this.getScrollHeight()){
+            if(this.currentPage < this.totalPage) {
+              this.currentPage++
+              this.isMore = '加载中...'
+              this.getList(this.currentPage)
+            }
+            
+          }
+        })
+      }
+    }
   }
 </script>
 
@@ -30,7 +120,7 @@
   @import "~common/less/variable.less";
 
   .content {
-    li {
+    li a{
       display: flex;
       .vh(margin-bottom,40);
       .img-wrap {
@@ -47,7 +137,7 @@
         .d-title {
           font-size:16px;
           line-height:24px;
-          
+          .vh(min-height,96);
         }
         .d-date {
           font-size:12px;
@@ -58,4 +148,10 @@
     }
     
   }
+  .loading {
+      color:@color2;
+      text-align: center;
+      font-size:12px;
+      padding:20px 0;
+    }
 </style>

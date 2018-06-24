@@ -1,5 +1,5 @@
 <template>
-  <div class="about4 pd15 min-height">
+  <div class="achievement pd15 min-height">
     <List v-show="isList" :url="url" :type="type"></List>
     <transition name="move">
       <router-view class="detail"></router-view>
@@ -53,7 +53,7 @@
 <style scoped lang="less" rel="stylesheet/less">
   @import "~common/less/mixin.less";
   @import "~common/less/variable.less";
-  .about4 {
+  .achievement {
     position: relative;
     .detail {
       width:100%;

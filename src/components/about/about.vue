@@ -56,8 +56,8 @@
         text-align: center;
         top:30%;
         left:50%;
-        .vw(margin-left,-210);
-        .vw(width,420);
+        .vw(margin-left,-250);
+        .vw(width,500);
         h1 {
           font-size:30px;
         }

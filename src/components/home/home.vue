@@ -57,6 +57,18 @@
         公司业绩
         <span></span>
       </div>
+
+
+      <swiper :options="swiperOption" ref="mySwiper">
+        <swiper-slide v-for="item in list1" :key="item.id">
+          <router-link :to="'/information/b/detail/'+item.id">
+            <div>{{item.title}}</div>
+            <div>ttt</div>
+          </router-link>
+        </swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
+      
     </section>
     <section class="section section3">
       <div class="title">
@@ -64,26 +76,20 @@
         <span></span>
       </div>
       <ul class="d-content">
-        <li>
-          <div class="img-wrap">
-            <img src="./image/1.jpg" alt="">
-          </div>
-          <div class="d-info">
-            <div class="d-title nowrap2">一文读懂「用户行为数据」的采集、分析和应用首付水电费水电费是的f</div>
-            <div class="d-date">2017-12-12</div>
-          </div>
-        </li>
-        <li>
-          <div class="img-wrap">
-            <img src="./image/1.jpg" alt="">
-          </div>
-          <div class="d-info">
-            <div class="d-title nowrap2">一文读懂「用户行为数据」的采集、分析和应用</div>
-            <div class="d-date">2017-12-12</div>
-          </div>
+        <li v-for="item in list" :key="item.id">
+          <router-link :to="'/information/b/detail/'+item.id">
+            <div class="img-wrap">
+              <img src="./image/1.jpg" alt="">
+            </div>
+            <div class="d-info">
+              <div class="d-title nowrap2">{{item.title}}</div>
+              <div class="d-date">{{item.createTime}}</div>
+            </div>
+          </router-link>
+          
         </li>
       </ul>
-      <a href="" class="more">查看更多</a>
+      <router-link to="/information/b" class="more">查看更多</router-link>
     </section>
     <section class="section section4">
       <div class="title">
@@ -109,12 +115,76 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import { query } from '@/api/api'
   import Slider from 'components/slider/slider.vue'
+  import { yearMonthDay } from '@/utils/index'
+  import 'swiper/dist/css/swiper.css'
+  import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
   export default {
-    components: {
-      Slider
+    data() {
+      return {
+        list: [],
+        list1: [],
+        swiperOption: {
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+            
+          },
+          autoHeight: true, //高度随内容变化
+          notNextTick: true,
+          centeredSlides: true,
+          prevButton:'.swiper-button-prev',
+          nextButton:'.swiper-button-next',
+          autoplayDisableOnInteraction: false,
+          observer:true,//修改swiper自己或子元素时，自动初始化swiper  
+          observeParents:true,//修改swiper的父元素时，自动初始化swiper  
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          pagination : {
+            el:'.swiper-pagination',
+          },
+          loop: true,
+        }
+      }
     },
+    computed: {
+      swiper () {
+        return this.$refs.mySwiper.swiper
+      }
+    },
+    components: {
+      Slider,
+      swiper,
+      swiperSlide
+    },
+    mounted() {
+      query({
+        // type: 7
+      }).then((res) => {
+        if(res.data.code == '200') {
+          this.list = res.data.data.rows.slice(0,5)
+          this.list.map((item) => {
+            item.createTime = yearMonthDay(item.createTime)
+          })
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+
+      query({
+        // type: 7
+      }).then((res) => {
+        if(res.data.code == '200') {
+          this.list1 = res.data.data.rows.slice(0,6)
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
   }
 </script>
 
@@ -158,14 +228,30 @@
     .section2,.section3,.section4 {
       .vh(margin-top,12);
     }
+    .section2 {
+      .swiper-slide {
+        width:100%;
+        .vh(height,530);
+        background:rgba(0,0,0,.5);
+        a {
+          width:100%;
+          .vh(height,530);
+          display:block;
+        }
+      }
+    }
     .section3 {
       .vw(padding-left,30);
       .vh(padding-right,30);
       box-sizing: border-box;
       .d-content {
         li {
-          display: flex;
-          .vh(margin-bottom,40);
+          a {
+            display: flex;
+            .vh(margin-bottom,40);
+            color:@color1;
+          }
+          
           .img-wrap {
             .vw(width,240);
             border:1px solid black;
@@ -180,7 +266,7 @@
             .d-title {
               font-size:16px;
               line-height:24px;
-              
+              .vh(height,96);
             }
             .d-date {
               font-size:12px;
