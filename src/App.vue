@@ -32,17 +32,17 @@ export default {
   .router-link-active {
     color:red;
   }
-  .move-enter-active, 
-    .move-leave-active {
-        transition: all .7s;
-    }
+  // .move-enter-active, 
+  //   .move-leave-active {
+  //       transition: all .7s;
+  //   }
 
-    .move-enter,
-    .move-leave{
-        transform: translate3d(0, 10px, 0);
-        opacity: 0;
-    }
-    .move-enter-to {
-      opacity: 1;
-    }
+  //   .move-enter,
+  //   .move-leave{
+  //       transform: translate3d(0, 10px, 0);
+  //       opacity: 0;
+  //   }
+  //   .move-enter-to {
+  //     opacity: 1;
+  //   }
 </style>

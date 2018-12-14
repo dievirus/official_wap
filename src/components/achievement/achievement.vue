@@ -10,9 +10,9 @@
       </div>
     </div>
     <div class="tab">
+      <router-link to="/achievement/d">工程案例展示</router-link>
       <router-link to="/achievement/a">获奖工程</router-link>
-      <router-link to="/achievement/b">土建工程</router-link>
-      <router-link to="/achievement/c">市政工程</router-link>
+      <router-link to="/achievement/b">工程动态</router-link>
     </div>
     <transition name="move">
       <router-view></router-view>

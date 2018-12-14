@@ -44,7 +44,7 @@
         text-align: center;
         top:40%;
         left:50%;
-        .vw(margin-left,-250);
+        .vw(margin-left,-300);
         .vw(width,600);
         h1 {
           font-size:20px;

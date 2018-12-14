@@ -35,7 +35,7 @@ export function query(params) {
     axios({
       method: 'post',
       // url: baseUrl+'/query',
-      url: '/apis',
+      url:'http://47.96.151.153:9300/main/query',
       data:params,
     }).then((res) => {
       resolve(res)

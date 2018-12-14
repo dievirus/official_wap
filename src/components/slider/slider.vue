@@ -11,9 +11,23 @@
           <div class="slide1-text5 ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="" swiper-animate-delay="2.3s">更多精彩，尽在大划建筑</div>
         </div>
     </swiper-slide>
-    <swiper-slide ><img src="./bg1.png" ></swiper-slide>
-    <div class="swiper-pagination" id="test" slot="pagination"></div>
+    <swiper-slide >
+      <img src="./bg2.png" >
+      <div class="slide2-wrap">
+        <div class="slide2-text1 ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="" swiper-animate-delay="0.2s">以诚信务实构建和谐企业</div>
+        <div class="slide2-text2 ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="" swiper-animate-delay="0.9s">用科学管理打造精品工程</div>
+      </div>
+    </swiper-slide>
+    <swiper-slide >
+      <img src="./bg3.png" >
+      <div class="slide3-wrap">
+        <div class="slide3-text1 ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="" swiper-animate-delay="0.2s">创新 协作</div>
+        <div class="slide3-text2 ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="" swiper-animate-delay="0.9s">敬业 奉献</div>
+      </div>
+    </swiper-slide>
+    <div class="swiper-pagination" slot="pagination"></div>
   </swiper>
+  
   </div>
 </template>
 
@@ -26,26 +40,35 @@
       return {
         swiperOption: {
           autoplay: {
-            delay: 30000000,
+            delay: 5000,
             disableOnInteraction: false
           },
           autoplayDisableOnInteraction: false,
+          
           paginationType:"bullets",
           pagination : {
             el:'.swiper-pagination',
-            bulletClass : 'my-swiper-pagination-bullet',
-            bulletActiveClass : 'my-swiper-pagination-bullet-active'
+            type: 'custom',
+            renderCustom: function (swiper, current, total) {
+              const activeColor = '1'
+              const normalColor = '.3'
+              let color = ''
+              let paginationStyle = ''
+              let html = ''
+              for (let i = 1; i <= total; i++) {
+                if (i === current) {
+                  color = activeColor
+                } else {
+                  color = normalColor
+                }
+                paginationStyle = `background:#fff;width:8px;height:8px;opacity:${color};border-radius:100%;margin-left:15px;`
+                html += `<span class="swiper-pagination-bullet" style=${paginationStyle}></span>`
+              }
+              return html
+            }
           },
           loop: true,
         },
-        img:[
-            {
-              url:'/static/1.jpg'
-            },
-            {
-              url:'/static/2.jpg'
-            }
-        ]
       }
     },
     components: {
@@ -65,6 +88,7 @@
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">
+  @import "./animate.min.css";
   @import "~common/less/mixin.less";
 
   img {
@@ -104,6 +128,33 @@
     .slide1-text5 {
       font-size:12px;
       opacity: .6;
+    }
+  }
+  .slide2-wrap {
+    position: absolute;
+    left:0;
+    .vh(top,160);
+    z-index:100;
+    color:#fff;
+    text-align: center;
+    width:100%;
+    font-size:30px;
+    .slide2-text2 {
+      .vh(margin-top,30)
+    }
+
+  }
+  .slide3-wrap {
+    position: absolute;
+    left:0;
+    .vh(top,160);
+    z-index:100;
+    color:#fff;
+    text-align: center;
+    width:100%;
+    font-size:30px;
+    .slide3-text2 {
+      .vh(margin-top,30)
     }
   }
 </style>

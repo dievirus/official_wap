@@ -4,7 +4,7 @@
         <li v-for="item in list" :key="item.id">
           <router-link :to="url+item.id">
             <div class="img-wrap">
-              <img v-lazy="item.src" alt="">
+              <img v-lazy="item.img" alt="">
             </div>
             <div class="d-info">
               <div class="d-title nowrap2">{{item.title}}</div>
@@ -57,7 +57,14 @@
             this.totalPage = Math.ceil((res.data.data.count) / this.pageSize)
             this.list.map((item) => {
               item.createTime = yearMonthDay(item.createTime)
+              if(item.img) {
+                item.img = 'http://47.96.151.153:9000/' + item.img
+              }else {
+                item.img = '/static/image/default.png'
+              }
             })
+
+            
             if(this.totalPage == 1 || this.totalPage == this.currentPage) {
               this.isMore = '暂无更多数据'
             }else {
@@ -101,7 +108,7 @@
       },
       onScroll() {
         window.onscroll = (() => {
-          if(this.getScrollTop() + this.getWindowHeight() == this.getScrollHeight()){
+          if(this.getScrollTop() + this.getWindowHeight() >= this.getScrollHeight() - 200){
             if(this.currentPage < this.totalPage) {
               this.currentPage++
               this.isMore = '加载中...'
@@ -125,8 +132,10 @@
       .vh(margin-bottom,40);
       .img-wrap {
         .vw(width,240);
+        .vh(height,180);
         img {
           width:100%;
+          .vh(height,180)
         }
       }
       .d-info {
@@ -137,7 +146,7 @@
         .d-title {
           font-size:16px;
           line-height:24px;
-          .vh(min-height,96);
+          .vh(height,96);
         }
         .d-date {
           font-size:12px;

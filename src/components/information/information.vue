@@ -45,7 +45,7 @@
         text-align: center;
         top:40%;
         left:50%;
-        .vw(margin-left,-250);
+        .vw(margin-left,-300);
         .vw(width,600);
         h1 {
           font-size:20px;
@@ -63,11 +63,13 @@
     .move-enter-active, 
     .move-leave-active {
         transition: all .7s;
+        -webkit-transition: all .7s;
     }
 
     .move-enter,
     .move-leave{
         transform: translate3d(0, 10px, 0);
+        -webkit-transform: translate3d(0, 10px, 0);
         opacity: 0;
     }
     .move-enter-to {

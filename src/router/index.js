@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const A = () => import('components/a')
-const B = () => import('components/b')
-const BB = () => import('components/bb')
 const Home = () => import('components/home/home')
 const Detail = () => import('components/detail/detail')
 
@@ -20,6 +17,7 @@ const Achievement = () => import('components/achievement/achievement')
 const Achievement1 = () => import('components/achievement/achievement1')
 const Achievement2 = () => import('components/achievement/achievement2')
 const Achievement3 = () => import('components/achievement/achievement3')
+const Achievement4 = () => import('components/achievement/achievement4')
 
 // 投资合作
 const Cooperation = () => import('components/cooperation/cooperation')
@@ -78,7 +76,7 @@ export default new Router({
           component: About4,
           meta: { 
             url:'/about/d/detail/',
-            type: 1
+            type: 14
           },
           children: [
             {
@@ -96,14 +94,14 @@ export default new Router({
     {
       path:'/achievement',
       component: Achievement,
-      redirect:'/achievement/a',
+      redirect:'/achievement/d',
       children: [
         {
           path:'a',
           component: Achievement1,
           meta: { 
             url:'/achievement/a/detail/',
-            type:0
+            type:1
           },
           children: [
             {
@@ -117,7 +115,7 @@ export default new Router({
           component: Achievement2,
           meta: { 
             url:'/achievement/b/detail/',
-            type:0
+            type:2
           },
           children: [
             {
@@ -131,7 +129,7 @@ export default new Router({
           component: Achievement3,
           meta: { 
             url:'/achievement/c/detail/',
-            type:0
+            type:3
           },
           children: [
             {
@@ -140,7 +138,20 @@ export default new Router({
             }
           ]
         },
-        
+        {
+          path:'d',
+          component: Achievement4,
+          meta: { 
+            url:'/achievement/d/detail/',
+            type:15
+          },
+          children: [
+            {
+              path:'detail/:id',
+              component:Detail
+            }
+          ]
+        },
       ]
     },
     {
@@ -153,7 +164,7 @@ export default new Router({
           component: Cooperation1,
           meta: { 
             url:'/cooperation/a/detail/',
-            type:0
+            type:4
           },
           children: [
             {
@@ -178,7 +189,7 @@ export default new Router({
           component: information1,
           meta: { 
             url:'/information/a/detail/',
-            type:0
+            type:6
           },
           children: [
             {
@@ -192,7 +203,7 @@ export default new Router({
           component: information2,
           meta: { 
             url:'/information/b/detail/',
-            type:0
+            type:7
           },
           children: [
             {
@@ -206,7 +217,7 @@ export default new Router({
           component: information3,
           meta: { 
             url:'/information/c/detail/',
-            type:0
+            type:8
           },
           children: [
             {
@@ -228,7 +239,7 @@ export default new Router({
           component: donate1,
           meta: { 
             url:'/donate/a/detail/',
-            type:0
+            type:9
           },
           children: [
             {
@@ -249,7 +260,7 @@ export default new Router({
           component: construction1,
           meta: { 
             url:'/construction/a/detail/',
-            type:0
+            type:10
           },
           children: [
             {
@@ -263,7 +274,7 @@ export default new Router({
           component: construction2,
           meta: { 
             url:'/construction/b/detail/',
-            type:0
+            type:11
           },
           children: [
             {
@@ -277,7 +288,7 @@ export default new Router({
           component: construction3,
           meta: { 
             url:'/construction/c/detail/',
-            type:0
+            type:12
           },
           children: [
             {
@@ -291,7 +302,7 @@ export default new Router({
           component: construction4,
           meta: { 
             url:'/construction/d/detail/',
-            type:0
+            type:13
           },
           children: [
             {

@@ -12,6 +12,8 @@ Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper)
 Vue.use(lazyLoad)
 
+
+
 // 解决移动端click事件300ms延迟
 fastclick.attach(document.body)
 

@@ -2,11 +2,7 @@
   <div class="detail">
     <div class="c-title">{{detailData.title}}</div>
     <div class="date">{{detailData.createTime}}</div>
-    <div class="img-wrap">
-      <img src="./test.jpg" alt="">
-    </div>
-    <div class="text">
-      {{detailData.contentStr}}
+    <div class="text" v-html="detailData.content">
     </div>
    </div>
 </template>
@@ -26,6 +22,7 @@ import { yearMonthDay } from '@/utils/index'
       this.getData()
     },
     methods: {
+      
       getData() {
         query({
           id:this.$route.params.id

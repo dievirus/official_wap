@@ -49,21 +49,27 @@
             <img src="./image/yshig_on.png" alt="">
             <div class="text">模板脚手架专业承包不分等级</div>
           </li>
+          <li >
+            <img src="./image/gang.png" alt="">
+            <div class="text">钢结构工程专业承包贰级</div>
+          </li>
+          <li >
+            <img src="./image/other1.png" alt="">
+            <div class="text">业务拓展中</div>
+          </li>
         </ul>
       </div>
     </section>
     <section class="section section2">
       <div class="title">
-        公司业绩
+        工程案例展示
         <span></span>
       </div>
-
-
       <swiper :options="swiperOption" ref="mySwiper">
         <swiper-slide v-for="item in list1" :key="item.id">
-          <router-link :to="'/information/b/detail/'+item.id">
-            <div>{{item.title}}</div>
-            <div>ttt</div>
+          <router-link :to="'/achievement/d/detail/'+item.id">
+            <div class="s2-img-wrap"><img :src="item.img" alt=""></div>
+            <div class="s2-title nowrap">{{item.title}}</div>
           </router-link>
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
@@ -79,7 +85,7 @@
         <li v-for="item in list" :key="item.id">
           <router-link :to="'/information/b/detail/'+item.id">
             <div class="img-wrap">
-              <img src="./image/1.jpg" alt="">
+              <img :src="item.img" alt="">
             </div>
             <div class="d-info">
               <div class="d-title nowrap2">{{item.title}}</div>
@@ -109,6 +115,29 @@
         <div><img src="./image/10.jpg" alt=""></div>
         <div><img src="./image/11.jpg" alt=""></div>
         <div><img src="./image/12.jpg" alt=""></div>
+        <div><span>zh中房集团成都房地产开发有限公司</span></div>
+        <div><span>四川省合丰置业发展有限责任公司</span></div>
+        <div><span>成都智远金益房地产开发有限公司</span></div>
+        <div><span>成都圣沅投资有限公司</span></div>
+        <div><span>崇州天顺置业有限公司</span></div>
+        <div><span>成都蓝润航瑞置业有限公司</span></div>
+        <div><span>四川川出置业有限公司</span></div>
+        <div><span>崇州市富邦皮革有限公司</span></div>
+        <div><span>成都市蜀州城市建设投资有限公司</span></div>
+        <div><span>成都合能兴进达房地产开发有限公司</span></div>
+        <div><span>四川省合丰置业发展有限责任公司</span></div>
+        <div><span>四川愿景实业有限公司</span></div>
+        <div><span>大邑青禾置业有限公司</span></div>
+        <div><span>成都市琉璃旅游投资开发有限责任公司</span></div>
+
+        <div><span>成都唐人街置业有限公司</span></div>
+        <div><span>成都瑞熙合能房地产开发有限公司</span></div>
+        <div><span>成都泰江置业有限公司</span></div>
+        <div><span>四川金联实业有限公司</span></div>
+        <div><span>成都瑞进合能房地产开发有限公司</span></div>
+        <div><span>四川恒昌房地产开发有限公司</span></div>
+        <div><span>四川华炜投资有限公司</span></div>
+        <div><span>中海信和成都物业发展有限公司</span></div>
       </div>
     </section>
   </div>
@@ -128,7 +157,7 @@
         list1: [],
         swiperOption: {
           autoplay: {
-            delay: 3000,
+            delay: 5000,
             disableOnInteraction: false,
             
           },
@@ -163,12 +192,17 @@
     },
     mounted() {
       query({
-        // type: 7
+        type: 7
       }).then((res) => {
         if(res.data.code == '200') {
           this.list = res.data.data.rows.slice(0,5)
           this.list.map((item) => {
             item.createTime = yearMonthDay(item.createTime)
+            if(item.img) {
+              item.img = 'http://47.96.151.153:9000/' + item.img
+            }else {
+              item.img = '/static/image/default.png'
+            }
           })
         }
       }).catch((err) => {
@@ -176,10 +210,18 @@
       })
 
       query({
-        // type: 7
+        type: 15
       }).then((res) => {
         if(res.data.code == '200') {
           this.list1 = res.data.data.rows.slice(0,6)
+
+          this.list1.map((item) => {
+            if(item.img) {
+              item.img = 'http://47.96.151.153:9000/' + item.img
+            }else {
+              item.img = '/static/image/default.png'
+            }
+          })
         }
       }).catch((err) => {
         console.log(err)
@@ -227,16 +269,33 @@
     }
     .section2,.section3,.section4 {
       .vh(margin-top,12);
+      
     }
     .section2 {
       .swiper-slide {
         width:100%;
-        .vh(height,530);
-        background:rgba(0,0,0,.5);
+        .vh(height,630);
+        .s2-img-wrap {
+          overflow: hidden;
+          width:100%;
+          .vh(height,500);
+        }
+        .s2-title {
+          text-align:center;
+          margin-top:10px;
+          padding:0 15px;
+        }
         a {
           width:100%;
-          .vh(height,530);
+          .vh(height,630);
           display:block;
+          color:@color1;
+
+          img {
+            width:100%;
+            .vh(height,560);
+            display:block;
+          }
         }
       }
     }
@@ -254,7 +313,8 @@
           
           .img-wrap {
             .vw(width,240);
-            border:1px solid black;
+            .vh(height,180);
+            overflow: hidden;
             img {
               width:100%;
             }
@@ -302,6 +362,20 @@
           width:33.33333%;
           text-align: center;
           .vw(margin-bottom,30);
+          font-size:10px;
+          span {
+            display:block;
+            .vw(width,210);
+            margin:0 auto;
+            height:70px;
+            box-shadow: 0px 0px 20px #ddd;
+            
+            box-sizing: border-box;
+            padding:0 10px;
+            padding-top:20px;
+            font-weight: 700;
+            line-height:14px;
+          }
         }
         img {
           .vw(width,210);
