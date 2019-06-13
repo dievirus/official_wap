@@ -1,7 +1,7 @@
 <template>
   <div class="footer ">
     <div class="text1">全国服务热线:028-8231-2656</div>
-    <div class="text2">地址：四川省崇州市滨江路南一段19号</div>
+    <div class="text2">地址： 四川省崇州市崇阳街道向荣街361号附301-303号3层</div>
     <div class="text3">Copyright © 2018 大划建筑版权所有</div>
     <div class="text4">蜀ICP备18003830号</div>
   </div>
